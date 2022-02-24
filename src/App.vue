@@ -52,10 +52,25 @@ const ResetGame = () => {
 </script>
 
 <template>
-  <main class="pt-8 text-center">
+  <main class="pt-8 text-center dark:bg-gray-800 min-h-screen dark:text-white">
     <h1 class="mb-8 text 3xl font-bold uppercase">Tic Tac Toe</h1>
 
     <h3 class="text-xl mb-4"> Player {{ player }}'s Turn</h3>
+
+
+<div class=".flex.flex-col.items items-center mb-8">
+  <div
+  v-for'(row, x) in board'
+  :key="x"
+  class="flex">
+  
+  <div
+  v-for="(cell, y) in row"
+  :key="y"
+  @click="MakeMove(x, y)"
+  :class="" border="border=white w-20 h-20 hoer:bg-gray-700 flex items-center justify-center material-icons-outlines text4x1 cursor-pointer""></div>"
+  </div>
+
   </main>
 </template>
 
