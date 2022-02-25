@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed } from 'vue';
 
-const player =  ref ("x");
+const player =  ref ("X");
 const board  = ref([
 
   ["", "", ""],
@@ -28,15 +28,15 @@ const CalculateWinner = (squares) => {
   }
   return null;
 }
-
-const winner = computed(() => CalculateWinner(board.value.flat()));
+ 
+const winner = computed(() => CalculateWinner(board.value.flat()))
 
 const MakeMove = (x, y) => {
   if (winner.value) return
 
-  if (board.value[y][x] !== "") return
+  if (board.value[x][y] !== "") return
 
-  board.value[y][x] = player.value;
+  board.value[x][y] = player.value;
 
   player.value = player.value === "x" ? "o" : "x";
 }
@@ -46,7 +46,7 @@ const ResetGame = () => {
     ["", "", ""],
     ["", "", ""],
     ["", "", ""]
-  ];
+  ]
   player.value = "x";
 }
 </script>
@@ -58,7 +58,7 @@ const ResetGame = () => {
     <h3 class="text-xl mb-4"> Player {{ player }}'s Turn</h3>
 
 
-<div class=".flex.flex-col.items items-center mb-8">
+<div class="flex flex-col items-center mb-8">
   <div
   v-for="(row, x) in board"
   :key="x"
@@ -68,7 +68,7 @@ const ResetGame = () => {
   v-for="(cell, y) in row"
   :key="y"
   @click="MakeMove(x, y)"
-  :class="`border border-white w-20 h-20 hover:bg-gray-700 flex items-center justify-center material-icons-outlines text-4xl cursor-pointer ${ cell === 'X' ? 'text-pink-500' : 'text-blue-400'  }`">
+  :class="`border border-white w-20 h-20 hover:bg-gray-700 flex items-center justify-center material-icons-outlined text-4xl cursor-pointer ${ cell === 'X' ? 'text-pink-500' : 'text-blue-400' }`">
   {{ cell === 'X' ? 'close' : cell === 'O' ? 'circle' : ' ' }}
   </div>
 
@@ -76,9 +76,9 @@ const ResetGame = () => {
   </div>
 </div>
 
-<h2 class="text-6xl font-bold mb-8">Player '{{winner}}' wins!</h2>
+<h2 v-if="winner" class="text-6xl font-bold mb-8">Player '{{ winner }}' wins!</h2>
 
-<button @click="ResetGane" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Reset Game</button>
+<button @click="ResetGame" class="px-4 py-2 bg-pink-500 rounded uppercase font-bold hover:bg-pink-600" duration-300>Reset Game</button>
 
   </main>
 </template>
