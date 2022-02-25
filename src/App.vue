@@ -60,7 +60,7 @@ const ResetGame = () => {
 
 <div class=".flex.flex-col.items items-center mb-8">
   <div
-  v-for'(row, x) in board'
+  v-for="(row, x) in board"
   :key="x"
   class="flex">
   
@@ -68,8 +68,17 @@ const ResetGame = () => {
   v-for="(cell, y) in row"
   :key="y"
   @click="MakeMove(x, y)"
-  :class="" border="border=white w-20 h-20 hoer:bg-gray-700 flex items-center justify-center material-icons-outlines text4x1 cursor-pointer""></div>"
+  :class="`border border=white w-20 h-20 hover:bg-gray-700 flex items-center justify-center material-icons-outlines text-4xl cursor-pointer ${ cell === 'X' ? 'text-pink-500' 'text-blue-400'  }`">
+  {{ cell === 'x' ? 'close' : cell === 'O' ? 'circle' : ' ' }}
   </div>
+
+  
+  </div>
+</div>
+
+<h2 class="text-6xl font-bold mb-8">Player '{{winner}}' wins!</h2>
+
+<button @click="ResetGane" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Reset Game</button>
 
   </main>
 </template>
